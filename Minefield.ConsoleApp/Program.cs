@@ -9,13 +9,8 @@ namespace Minefield.ConsoleApp
 
         static void Main(string[] args)
         {
-
             _gameManager = new GameManager();
-
-            Console.Title = "Minefield";
-            Console.WriteLine("Welcome to Minefield!");
-            Console.WriteLine("Press [Ctr-S] at any time to start a new game");
-            Console.WriteLine("Press [Esc] at any time to exit the game");
+            _gameManager.DisplayHeader();
 
             while(1 == 1)
             {
