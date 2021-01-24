@@ -3,7 +3,31 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30503.244
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Minefield.GameEngine", "Minefield.GameEngine\Minefield.GameEngine.csproj", "{CE06D0A8-2F44-4144-A46A-3C0DA1795ACA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Minefield.UnitTests", "Minefield.UnitTests\Minefield.UnitTests.csproj", "{9D5BA65C-07A5-4817-8524-65EAC4CE673F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Minefield.ConsoleApp", "Minefield.ConsoleApp\Minefield.ConsoleApp.csproj", "{4952F616-C6C7-44C8-B669-1AE17F8A7F61}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CE06D0A8-2F44-4144-A46A-3C0DA1795ACA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE06D0A8-2F44-4144-A46A-3C0DA1795ACA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE06D0A8-2F44-4144-A46A-3C0DA1795ACA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE06D0A8-2F44-4144-A46A-3C0DA1795ACA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D5BA65C-07A5-4817-8524-65EAC4CE673F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D5BA65C-07A5-4817-8524-65EAC4CE673F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D5BA65C-07A5-4817-8524-65EAC4CE673F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D5BA65C-07A5-4817-8524-65EAC4CE673F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4952F616-C6C7-44C8-B669-1AE17F8A7F61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4952F616-C6C7-44C8-B669-1AE17F8A7F61}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4952F616-C6C7-44C8-B669-1AE17F8A7F61}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4952F616-C6C7-44C8-B669-1AE17F8A7F61}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
