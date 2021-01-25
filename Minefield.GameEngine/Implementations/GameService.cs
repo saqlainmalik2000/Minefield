@@ -1,19 +1,25 @@
-﻿namespace Minefield.GameEngine
+﻿using Minefield.GameEngine.Models;
+
+namespace Minefield.GameEngine
 {
     public class GameService : IGameService
     {
-        private bool _initialized;
+        public bool Initialized { get; private set; }
 
-        public bool Initialized => _initialized;
+        public GameBoard GameBoard { get; private set; }
 
-        public void Start()
+        public void Start(GameBoardSettings gameBoardSettings)
         {
-            _initialized = true;
+            if (gameBoardSettings.IsValid)
+            {
+                GameBoard = new GameBoard(gameBoardSettings.Width, gameBoardSettings.Height);
+                Initialized = true;
+            }
         }
 
         public void End()
         {
-            _initialized = false;
+            Initialized = false;
         }
     }
 }

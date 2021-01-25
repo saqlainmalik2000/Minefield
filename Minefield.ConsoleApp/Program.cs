@@ -1,5 +1,4 @@
-﻿using Minefield.GameEngine;
-using System;
+﻿using System;
 
 namespace Minefield.ConsoleApp
 {
@@ -17,15 +16,16 @@ namespace Minefield.ConsoleApp
                 var key = Console.ReadKey(true);
 
                 if (key.Key == ConsoleKey.Escape)
+                {
                     _gameManager.ExitGame();
+                    Environment.Exit(0);
+                }
 
                 if (key.Modifiers == ConsoleModifiers.Control && key.Key == ConsoleKey.S)
                     _gameManager.StartNewGame();
-                else
-                    Console.WriteLine("Incorrect entry. Please try again");
+
             }
             
         }
-
     }
 }
