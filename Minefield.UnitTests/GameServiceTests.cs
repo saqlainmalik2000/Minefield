@@ -12,9 +12,10 @@ namespace Minefield.UnitTests
         {
             // arrange
             IGameService gameService = new GameService();
+            int gameBoardWidth = 5, gameBoardHeight = 10, playerLives = 2;
 
             // act
-            gameService.Start(new GameBoardSettings());
+            gameService.Start(new GameBoardSettings(gameBoardWidth, gameBoardHeight, playerLives));
             
             // assert
             Assert.IsNotNull(gameService);
@@ -26,8 +27,8 @@ namespace Minefield.UnitTests
         {
             // arrange
             IGameService gameService = new GameService();
-            int gameBoardWidth = 5, gameBoardHeight = 10;
-            var gameBoardSettings = new GameBoardSettings { Width = gameBoardWidth, Height = gameBoardHeight };
+            int gameBoardWidth = 5, gameBoardHeight = 10, playerLives = 2;
+            var gameBoardSettings = new GameBoardSettings(gameBoardWidth, gameBoardHeight, playerLives);
 
             // act
             gameService.Start(gameBoardSettings);
@@ -45,8 +46,8 @@ namespace Minefield.UnitTests
         {
             // arrange
             IGameService gameService = new GameService();
-            int gameBoardWidth = 5, gameBoardHeight = 10;
-            var gameBoardSettings = new GameBoardSettings { Width = gameBoardWidth, Height = gameBoardHeight };
+            int gameBoardWidth = 5, gameBoardHeight = 10, playerLives = 2;
+            var gameBoardSettings = new GameBoardSettings (gameBoardWidth, gameBoardHeight, playerLives);
             var xAxisPosition = "E";
             var yAxisPosition = "5";
 
@@ -64,12 +65,47 @@ namespace Minefield.UnitTests
         }
 
         [TestMethod]
+        public void Start_ValidPlayerLivesSettings_GenerateBoardGamePlayer()
+        {
+            // arrange
+            IGameService gameService = new GameService();
+            int gameBoardWidth = 5, gameBoardHeight = 10, playerLives = 2;
+            var gameBoardSettings = new GameBoardSettings(gameBoardWidth, gameBoardHeight, playerLives);
+
+            // act
+            gameService.Start(gameBoardSettings);
+
+            // assert
+            Assert.IsNotNull(gameService);
+            Assert.IsNotNull(gameService.GameBoard);
+            Assert.IsTrue(gameService.GameBoard.Player.LivesRemaining == playerLives);
+            Assert.IsTrue(gameService.Initialized);
+        }
+
+        [TestMethod]
         public void Start_InValidGameBoardSettings_DoNotInitializeNewGame()
         {
             // arrange
             IGameService gameService = new GameService();
-            int gameBoardWidth = -5, gameBoardHeight = -10;
-            var gameBoardSettings = new GameBoardSettings { Width = gameBoardWidth, Height = gameBoardHeight };
+            int gameBoardWidth = -5, gameBoardHeight = -10, playerLives = -1;
+            var gameBoardSettings = new GameBoardSettings(gameBoardWidth, gameBoardHeight, playerLives);
+
+            // act
+            gameService.Start(gameBoardSettings);
+
+            // assert
+            Assert.IsNotNull(gameService);
+            Assert.IsNull(gameService.GameBoard);
+            Assert.IsFalse(gameService.Initialized);
+        }
+
+        [TestMethod]
+        public void Start_InValidPlayerLivesSettings_DoNotInitializeNewGame()
+        {
+            // arrange
+            IGameService gameService = new GameService();
+            int gameBoardWidth = 5, gameBoardHeight = 10, playerLives = -1;
+            var gameBoardSettings = new GameBoardSettings(gameBoardWidth, gameBoardHeight, playerLives);
 
             // act
             gameService.Start(gameBoardSettings);
@@ -85,9 +121,10 @@ namespace Minefield.UnitTests
         {
             // arrange
             IGameService gameService = new GameService();
+            int gameBoardWidth = 5, gameBoardHeight = 10, playerLives = 2;
 
             // act
-            gameService.Start(new GameBoardSettings());
+            gameService.Start(new GameBoardSettings(gameBoardWidth, gameBoardHeight, playerLives));
             gameService.End();
 
             // assert

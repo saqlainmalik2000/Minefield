@@ -16,11 +16,11 @@ namespace Minefield.ConsoleApp
         public void StartNewGame()
         {
             var gameSettings = PromptForSettings();
-            _gameService.Start(new GameBoardSettings { Width = gameSettings.BoardWidth, Height = gameSettings.BoardHeight });
+            _gameService.Start(new GameBoardSettings(gameSettings.BoardWidth, gameSettings.BoardHeight, gameSettings.PlayerLives));
             if (_gameService.Initialized)
                 RenderGameBoard();
             else
-                DisplayError("The game board could not be initialized with the dimensions given. Please check and try again");          
+                DisplayError("The game board could not be initialized with the dimensions or player lives given. Please check and try again");
         }
 
         public void ExitGame()
@@ -53,11 +53,14 @@ namespace Minefield.ConsoleApp
             Console.BackgroundColor = ConsoleColor.White;
             Console.ForegroundColor = ConsoleColor.Black;
 
-            Console.WriteLine("Please enter board width");
+            Console.WriteLine("Please enter board width (for initial review please use a maximum of 20)");
             gameSettings.BoardWidth = int.Parse(Console.ReadLine());
 
-            Console.WriteLine("Please enter board height");
+            Console.WriteLine("Please enter board height (for initial review please use a maximum of 20)");
             gameSettings.BoardHeight = int.Parse(Console.ReadLine());
+
+            Console.WriteLine("Please enter player lives (for initial review please use a maximum of 5)");
+            gameSettings.PlayerLives = int.Parse(Console.ReadLine());
 
             Console.ResetColor();
 
@@ -71,9 +74,9 @@ namespace Minefield.ConsoleApp
 
             for (int y = _gameService.GameBoard.Height - 1; y >= 0; y--)
             {
-                DisplayYAxisLabel(y.ToString());
+                DisplayYAxisLabel((y+1).ToString());
                 for (int x = 0; x < _gameService.GameBoard.Width; x++)
-                    DrawTile(_gameService.GameBoard.Tiles[x, y].IsMined);
+                    DrawTile(_gameService.GameBoard.Tiles[x, y].IsMined, _gameService.GameBoard.Player.CurrentPosition == _gameService.GameBoard.Tiles[x,y].Id);
 
                 Console.WriteLine("");
             }
@@ -83,7 +86,11 @@ namespace Minefield.ConsoleApp
                 DisplayXAxisLabel(_gameService.GameBoard.Tiles[x, 0].XPositionLabel);
 
             Console.WriteLine("");
+            DisplayPlayerInformation(_gameService.GameBoard.Player);
+            Console.WriteLine("");
+
         }
+
 
         private void DisplayYAxisLabel(string label)
         {
@@ -101,10 +108,36 @@ namespace Minefield.ConsoleApp
             Console.ResetColor();
         }
 
-        private void DrawTile(bool isMined)
+        private void DrawTile(bool isMined, bool playerStandingOnTile)
         {
-            var mindedLabel = isMined ? 'x' : ' ';
-            Console.Write($"[{mindedLabel}]");
+            if(isMined)
+                Console.Write($"[x]");
+            else
+            {
+                if(playerStandingOnTile)
+                    DisplayPlayerPosition();
+                else
+                    Console.Write($"[ ]");
+            }
+
+            //var mindedLabel = isMined ? 'x' : ' ';
+            //Console.Write($"[{mindedLabel}]");
+        }
+
+        private void DisplayPlayerInformation(Player player)
+        {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine($"Player lives remaining: {player.LivesRemaining}");
+            Console.WriteLine($"Player moves made: {player.MoveCount}");
+            Console.WriteLine($"Player current position: {player.CurrentPositionLabel}");
+            Console.ResetColor();
+        }
+
+        private void DisplayPlayerPosition()
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.Write($"[o]");
+            Console.ResetColor();
         }
 
         private static void DisplayError(string message)

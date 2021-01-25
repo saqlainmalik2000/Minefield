@@ -12,7 +12,7 @@ namespace Minefield.GameEngine
         {
             if (gameBoardSettings.IsValid)
             {
-                GameBoard = new GameBoard(gameBoardSettings.Width, gameBoardSettings.Height);
+                GameBoard = new GameBoard(gameBoardSettings.Width, gameBoardSettings.Height, gameBoardSettings.PlayerLives);
                 Initialized = true;
             }
         }

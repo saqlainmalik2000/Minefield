@@ -7,14 +7,17 @@ namespace Minefield.GameEngine.Models
         public int Width { get; }
         public int Height { get; }
         public Tile[,] Tiles { get; private set; }
+        public Player Player { get; set; }
+
 
         private const int AsciiCodeForCharA = 65;
 
-        public GameBoard(int width, int height)
+        public GameBoard(int width, int height, int playerLives)
         {
             Width = width;
             Height = height;
-            InitializeTiles();       
+            InitializeTiles();
+            Player = CreatePlayer(playerLives);
         }
 
         private void InitializeTiles()
@@ -33,6 +36,22 @@ namespace Minefield.GameEngine.Models
                 }
             }
 
+        }
+
+        private Player CreatePlayer(int playerLives)
+        {
+            Player player = null;
+
+            for (int x = 0; x < Width; x++)
+            {
+                if (!Tiles[x, 0].IsMined)
+                {
+                    player = new Player(playerLives, Tiles[x, 0].Id, Tiles[x, 0].XPositionLabel + Tiles[x, 0].YPositionLabel);
+                    break;
+                }
+            }
+
+            return player;
         }
     }
 }
