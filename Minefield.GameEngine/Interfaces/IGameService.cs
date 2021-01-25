@@ -1,4 +1,5 @@
 ﻿using Minefield.GameEngine.Models;
+using System;
 
 namespace Minefield.GameEngine
 {
@@ -9,5 +10,10 @@ namespace Minefield.GameEngine
 
         void Start(GameBoardSettings gameBoardSettings);
         void End();
+
+        void MoveUp();
+        void MoveDown();
+        void MoveLeft();
+        void MoveRight();
     }
 }

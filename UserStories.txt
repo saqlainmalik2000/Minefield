@@ -1,0 +1,39 @@
+Story 1
+-------
+As a user I want to be able to start a new game (by pressing Ctr-S button combination)
+As a user I want to be able to end a game (by pressing the Esc button)
+
+Story 2
+-------
+As a user I want to see game related information
+	- At the top of the screen I would like
+		-- Instructions on playing the game
+
+Story 3
+-------
+As a user I want to be able to configure the game board dimensions (max 20 x 20)
+	- I would like to see a graphical representation of the board using suitable characters
+	- I would like to see a x-axis (using alpha chars) and a y-axis (using numerical chars)
+
+
+Story 4
+-------
+As a user I want to be able to configure my player
+	- I want to be able to set how many lives the player has (max 5)
+	- I want the current lives count displayed in a game information section at the bottom of the board
+
+
+Story 5
+-------
+As a player I want to be able to play the game
+	- I want to be able to move in an up, down, left, right direction
+		-- if I hit a mine
+			--- I want my player life count to be reduced by one
+			--- If my life count = 0 then I want the game to end
+			--- I want the mine to be displayed on the board
+		-- if I don't hit a mine
+			--- I want to move to that tile
+			--- I want the move count to incrment
+
+
+

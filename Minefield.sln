@@ -9,6 +9,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Minefield.UnitTests", "Mine
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Minefield.ConsoleApp", "Minefield.ConsoleApp\Minefield.ConsoleApp.csproj", "{4952F616-C6C7-44C8-B669-1AE17F8A7F61}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C8F867BD-90E8-4294-A99D-90B8FE76A9FA}"
+	ProjectSection(SolutionItems) = preProject
+		UserStories.txt = UserStories.txt
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
